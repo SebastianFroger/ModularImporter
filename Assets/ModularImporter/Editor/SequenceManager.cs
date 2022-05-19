@@ -14,14 +14,13 @@ namespace ModularImporter
             if (_sequences == null)
                 CollectAllSequences();
 
-            var dirPath = filePath;
             ImportSequence result = null;
-            while (result == null && dirPath != "Assets")
+            while (result == null && filePath != "Assets")
             {
-                dirPath = Directory.GetParent(dirPath).FullName.AsUnityAssetPath();
-                if (_sequences.ContainsKey(dirPath))
+                filePath = Directory.GetParent(filePath).FullName.AsUnityAssetPath();
+                if (_sequences.ContainsKey(filePath))
                 {
-                    result = (ImportSequence)AssetDatabase.LoadAssetAtPath(_sequences[dirPath], typeof(ImportSequence));
+                    result = (ImportSequence)AssetDatabase.LoadAssetAtPath(_sequences[filePath], typeof(ImportSequence));
                 }
             }
 
