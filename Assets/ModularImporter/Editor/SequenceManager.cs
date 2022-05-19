@@ -11,20 +11,18 @@ namespace ModularImporter
 
         public ImportSequence GetNearestSequenceTo(string filePath)
         {
-            if (_sequences == null || _sequences.Count == 0)
+            if (_sequences == null)
                 CollectAllSequences();
 
-            var dirPath = Path.GetDirectoryName(filePath).AsUnityAssetPath();
-
+            var dirPath = filePath;
             ImportSequence result = null;
-            while (result == null)
+            while (result == null && dirPath != "Assets")
             {
+                dirPath = Directory.GetParent(dirPath).FullName.AsUnityAssetPath();
                 if (_sequences.ContainsKey(dirPath))
                 {
-                    result = (ImportSequence)AssetDatabase.LoadAssetAtPath(dirPath, typeof(ImportSequence));
-                    break;
+                    result = (ImportSequence)AssetDatabase.LoadAssetAtPath(_sequences[dirPath], typeof(ImportSequence));
                 }
-                dirPath = Directory.GetParent(dirPath).FullName.AsUnityAssetPath();
             }
 
             return result;
@@ -38,7 +36,7 @@ namespace ModularImporter
             for (int i = 0; i < guids.Length; i++)
             {
                 var filePath = AssetDatabase.GUIDToAssetPath(guids[i]);
-                _sequences.Add(Path.GetDirectoryName(filePath), filePath);
+                _sequences.Add(Path.GetDirectoryName(filePath).AsUnityAssetPath(), filePath);
             }
 
             Debug.Log($"{this.GetType().Name} - found {_sequences.Count} ImportSequences in project");

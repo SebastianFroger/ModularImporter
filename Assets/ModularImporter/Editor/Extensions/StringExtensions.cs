@@ -1,10 +1,10 @@
-using UnityEngine;
-
 
 public static class StringExtensions
 {
     public static string AsUnityAssetPath(this string path)
     {
-        return path.Replace("/", "\\").Replace(System.IO.Directory.GetCurrentDirectory() + "\\", "");
+        var x = path.Replace("\\", "/");
+        var c = x.Replace($"{System.IO.Directory.GetCurrentDirectory().Replace("\\", "/")}/", "");
+        return c;
     }
 }
