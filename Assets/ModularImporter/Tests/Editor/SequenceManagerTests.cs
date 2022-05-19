@@ -20,7 +20,7 @@ namespace ModularImporter.Tests
             var sequencePath = "Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/Model/ModularImportSequence.ImportSequence.asset";
             var nearestSequence = (ImportSequence)AssetDatabase.LoadAssetAtPath(sequencePath, typeof(ImportSequence));
             var result = new SequenceManager().GetNearestSequenceTo(assetPath);
-            Equals(sequencePath, result);
+            Equals(nearestSequence, result);
         }
 
         [Test]
@@ -30,7 +30,7 @@ namespace ModularImporter.Tests
             var sequencePath = "Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/ModularImportSequence.ImportSequence.asset";
             var nearestSequence = (ImportSequence)AssetDatabase.LoadAssetAtPath(sequencePath, typeof(ImportSequence));
             var result = new SequenceManager().GetNearestSequenceTo(assetPath);
-            Equals(sequencePath, result);
+            Equals(nearestSequence, result);
         }
     }
 }

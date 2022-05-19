@@ -14,7 +14,7 @@ namespace ModularImporter
             if (_sequences == null || _sequences.Count == 0)
                 CollectAllSequences();
 
-            var dirPath = System.IO.Path.GetDirectoryName(filePath);
+            var dirPath = Path.GetDirectoryName(filePath).AsUnityAssetPath();
 
             ImportSequence result = null;
             while (result == null)
@@ -24,7 +24,7 @@ namespace ModularImporter
                     result = (ImportSequence)AssetDatabase.LoadAssetAtPath(dirPath, typeof(ImportSequence));
                     break;
                 }
-                dirPath = System.IO.Directory.GetParent(dirPath).FullName;
+                dirPath = Directory.GetParent(dirPath).FullName.AsUnityAssetPath();
             }
 
             return result;
