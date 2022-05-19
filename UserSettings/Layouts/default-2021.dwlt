@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 1718
     height: 1341
   m_ShowMode: 4
-  m_Title: Console
+  m_Title: Hierarchy
   m_RootView: {fileID: 11}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -67,8 +67,8 @@ MonoBehaviour:
     y: 0
     width: 835
     height: 681
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 100, y: 121}
+  m_MaxSize: {x: 4000, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 121}
   m_MaxSize: {x: 4000, y: 4021}
   vertical: 0
-  controlID: 137
+  controlID: 163
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -117,8 +117,8 @@ MonoBehaviour:
     y: 0
     width: 1060
     height: 526
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 23}
   m_Panes:
   - {fileID: 23}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 17
+  controlID: 84
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -168,8 +168,8 @@ MonoBehaviour:
     y: 0
     width: 462
     height: 765
-  m_MinSize: {x: 277, y: 71}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 275, y: 50}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 19}
   m_Panes:
   - {fileID: 19}
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 180
+  controlID: 150
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -218,8 +218,8 @@ MonoBehaviour:
     y: 0
     width: 394
     height: 765
-  m_MinSize: {x: 201, y: 221}
-  m_MaxSize: {x: 4001, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 20}
   m_Panes:
   - {fileID: 20}
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 181
+  controlID: 151
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 182
+  controlID: 152
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -429,7 +429,7 @@ MonoBehaviour:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 190
+    ID: 192
     splitterInitialOffset: 444
     currentActiveSplitter: -1
     realSizes:
@@ -495,9 +495,9 @@ MonoBehaviour:
       uniqueId: '[ModularImporter][suite]'
       name: ModularImporter
       fullName: ModularImporter
-      resultStatus: 2
-      duration: 0.0497113
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0877622
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -511,9 +511,9 @@ MonoBehaviour:
       uniqueId: '[ModularImporter.Tests.dll][suite]'
       name: ModularImporter.Tests.dll
       fullName: D:/ModularImporter/Library/ScriptAssemblies/ModularImporter.Tests.dll
-      resultStatus: 2
-      duration: 0.0249434
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0571211
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -527,9 +527,9 @@ MonoBehaviour:
       uniqueId: ModularImporter.Tests.dll/[ModularImporter][suite]
       name: ModularImporter
       fullName: ModularImporter
-      resultStatus: 2
-      duration: 0.0246122
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0564385
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -543,9 +543,9 @@ MonoBehaviour:
       uniqueId: ModularImporter.Tests.dll/ModularImporter/[ModularImporter.Tests][ModularImporter.Tests][suite]
       name: Tests
       fullName: ModularImporter.Tests
-      resultStatus: 2
-      duration: 0.0217027
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0561407
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -559,9 +559,9 @@ MonoBehaviour:
       uniqueId: ModularImporter.Tests.dll/ModularImporter/Tests/[ModularImporter.Tests][ModularImporter.Tests.SequenceManagerTests][suite]
       name: SequenceManagerTests
       fullName: ModularImporter.Tests.SequenceManagerTests
-      resultStatus: 2
-      duration: 0.0183831
-      messages: One or more child tests had errors
+      resultStatus: 1
+      duration: 0.0522645
+      messages: 
       output: 
       stacktrace: 
       notRunnable: 0
@@ -576,7 +576,7 @@ MonoBehaviour:
       name: GetSequenceInDir
       fullName: ModularImporter.Tests.SequenceManagerTests.GetSequenceInDir
       resultStatus: 1
-      duration: 0.0147728
+      duration: 0.0401601
       messages: 
       output: 'SequenceManager - found 2 ImportSequences in project
 
@@ -594,21 +594,13 @@ MonoBehaviour:
       uniqueId: ModularImporter.Tests.dll/ModularImporter/Tests/SequenceManagerTests/[ModularImporter.Tests][ModularImporter.Tests.SequenceManagerTests.GetSequenceInParentDir]
       name: GetSequenceInParentDir
       fullName: ModularImporter.Tests.SequenceManagerTests.GetSequenceInParentDir
-      resultStatus: 2
-      duration: 0.014657
-      messages: 'System.NullReferenceException : Object reference not set to an instance
-        of an object'
+      resultStatus: 1
+      duration: 0.0401797
+      messages: 
       output: 'SequenceManager - found 2 ImportSequences in project
 
 '
-      stacktrace: "  at ModularImporter.SequenceManager.GetNearestSequenceTo (System.String
-        filePath) [0x0005a] in D:\\ModularImporter\\Assets\\ModularImporter\\Editor\\SequenceManager.cs:27
-        \r\n  at ModularImporter.Tests.SequenceManagerTests.GetSequenceInParentDir
-        () [0x00023] in D:\\ModularImporter\\Assets\\ModularImporter\\Tests\\Editor\\SequenceManagerTests.cs:32
-        \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-        at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-        invokeAttr, System.Reflection.Binder binder, System.Object[] parameters,
-        System.Globalization.CultureInfo culture) [0x0006a] in <6073cf49ed704e958b8a66d540dea948>:0 "
+      stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -617,24 +609,13 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: ModularImporter.Tests.dll/ModularImporter/Tests/[ModularImporter.Tests][ModularImporter.Tests.SequenceManagerTests][suite]
-    m_ResultText: "GetSequenceInParentDir (0.015s)\n---\nSystem.NullReferenceException
-      : Object reference not set to an instance of an object\n---\nat ModularImporter.SequenceManager.GetNearestSequenceTo
-      (System.String filePath) [0x0005a] in D:\\ModularImporter\\Assets\\ModularImporter\\Editor\\SequenceManager.cs:27
-      \r\n  at ModularImporter.Tests.SequenceManagerTests.GetSequenceInParentDir
-      () [0x00023] in D:\\ModularImporter\\Assets\\ModularImporter\\Tests\\Editor\\SequenceManagerTests.cs:32
-      \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
-      culture) [0x0006a] in <6073cf49ed704e958b8a66d540dea948>:0\n---\nSequenceManager
-      - found 2 ImportSequences in project"
-    m_ResultStacktrace: "  at ModularImporter.SequenceManager.GetNearestSequenceTo
-      (System.String filePath) [0x0005a] in D:\\ModularImporter\\Assets\\ModularImporter\\Editor\\SequenceManager.cs:27
-      \r\n  at ModularImporter.Tests.SequenceManagerTests.GetSequenceInParentDir
-      () [0x00023] in D:\\ModularImporter\\Assets\\ModularImporter\\Tests\\Editor\\SequenceManagerTests.cs:32
-      \r\n  at (wrapper managed-to-native) System.Reflection.RuntimeMethodInfo.InternalInvoke(System.Reflection.RuntimeMethodInfo,object,object[],System.Exception&)\r\n 
-      at System.Reflection.RuntimeMethodInfo.Invoke (System.Object obj, System.Reflection.BindingFlags
-      invokeAttr, System.Reflection.Binder binder, System.Object[] parameters, System.Globalization.CultureInfo
-      culture) [0x0006a] in <6073cf49ed704e958b8a66d540dea948>:0 "
+    m_ResultText: 'GetSequenceInParentDir (0.040s)
+
+      ---
+
+      SequenceManager
+      - found 2 ImportSequences in project'
+    m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 69a881da
@@ -706,22 +687,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle
+    - Assets
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle
+  - Assets
   m_LastFoldersGridSize: 16
   m_LastProjectPath: D:\ModularImporter
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 645a0000
-    m_LastClickedID: 23140
-    m_ExpandedIDs: 00000000f0590000f2590000f4590000fc5900005c5a0000645a000000ca9a3bffffff7f
+    m_SelectedIDs: f2590000
+    m_LastClickedID: 23026
+    m_ExpandedIDs: 00000000f2590000f4590000f6590000f8590000fa590000fc590000fe59000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -749,7 +730,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000f0590000f2590000f4590000
+    m_ExpandedIDs: 00000000f2590000f4590000f6590000f8590000fa590000fc590000fe590000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -776,22 +757,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: TypeHandler
-      m_OriginalName: TypeHandler
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 4894
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
@@ -877,9 +858,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 6e5a0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 00f4ffff6cf4ffffd8f4ffff80f5ffffe8f5ffffcaf9ffff48faffff3afbffff
+      m_ExpandedIDs: d4f8ffff3afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
