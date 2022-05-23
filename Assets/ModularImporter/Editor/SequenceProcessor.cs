@@ -9,19 +9,15 @@ namespace ModularImporter
 {
     public class SequenceProcessor
     {
+        static SequenceManager _sequenceManager = new SequenceManager();
+        static TypeHandler _typeHandler = new TypeHandler();
+
         public static void PreprocessAsset(AssetImportContext context, AssetImporter assetImporter, bool typedAsset)
         {
             // Get Sequence
-            var sequence = new SequenceManager().GetNearestSequenceTo(context.assetPath);
+            var sequence = _sequenceManager.GetNearestSequenceTo(context.assetPath);
             if (sequence == null)
                 return;
-
-            // get types from assembly
-            List<Type> assemblyTypes = new List<Type>();
-            assemblyTypes.AddRange(TypeHandler.GetAssemblyTypes(sequence.preprocessAssetModules));
-            assemblyTypes.AddRange(TypeHandler.GetAssemblyTypes(sequence.preprocessTypedModules));
-            assemblyTypes.AddRange(TypeHandler.GetAssemblyTypes(sequence.postprocessTypedModules));
-
 
             UnityEngine.Object[] modules;
             if (!typedAsset)
@@ -29,19 +25,18 @@ namespace ModularImporter
             else
                 modules = sequence.preprocessTypedModules;
 
-
             foreach (var module in modules)
             {
                 // apply preset
                 if (module is Preset)
                 {
                     ApplyPreset((Preset)module, assetImporter);
+                    continue;
                 }
 
-                // execute monoscript
                 if (module is MonoScript)
                 {
-                    var type = assemblyTypes.Find(t => TypeHandler.GetTypeName(t) == module.name);
+                    Type type = _typeHandler.GetType(module.name);
                     var inst = Activator.CreateInstance(type) as IPreprocessModule;
                     inst.Process(context, assetImporter);
                 }
@@ -51,11 +46,10 @@ namespace ModularImporter
         public static void PostprocessAsset(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject)
         {
             // Get Sequence and types
-            var sequence = new SequenceManager().GetNearestSequenceTo(context.assetPath);
+            var sequence = _sequenceManager.GetNearestSequenceTo(context.assetPath);
             if (sequence == null)
                 return;
 
-            var assemblyTypes = TypeHandler.GetAssemblyTypes(sequence.postprocessTypedModules);
             foreach (var module in sequence.postprocessTypedModules)
             {
                 // apply preset
@@ -67,7 +61,7 @@ namespace ModularImporter
                 // execute monoscript
                 if (module is MonoScript)
                 {
-                    var type = Array.Find(assemblyTypes, t => TypeHandler.GetTypeName(t) == module.name);
+                    Type type = _typeHandler.GetType(module.name);
                     var inst = Activator.CreateInstance(type) as IPostprocessModule;
                     inst.Process(context, assetImporter, unityObject);
                 }

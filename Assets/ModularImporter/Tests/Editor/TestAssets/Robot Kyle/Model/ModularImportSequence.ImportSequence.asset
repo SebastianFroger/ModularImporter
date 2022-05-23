@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a937708ccb394e4fa7f9a48ae66b988, type: 3}
   m_Name: ModularImportSequence.ImportSequence
   m_EditorClassIdentifier: 
-  preprocessAssetModules: []
+  preprocessAssetModules:
+  - {fileID: 2655988077585873504, guid: 4469be87465e31549945511717a32784, type: 2}
   preprocessTypedModules:
   - {fileID: 11500000, guid: d230d7d58dff8b942b8bcd347f9ab5da, type: 3}
   postprocessTypedModules:
   - {fileID: 11500000, guid: 04cc30a9ba311f14d8c8d52f494ccfc5, type: 3}
+  ExecuteParentSequence: 0

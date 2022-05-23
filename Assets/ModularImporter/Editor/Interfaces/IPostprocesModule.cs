@@ -1,7 +1,10 @@
 using UnityEditor.AssetImporters;
 using UnityEditor;
 
-public interface IPostprocessModule
+namespace ModularImporter
 {
-    public void Process(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object asset);
+    public interface IPostprocessModule
+    {
+        public void Process(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object asset);
+    }
 }

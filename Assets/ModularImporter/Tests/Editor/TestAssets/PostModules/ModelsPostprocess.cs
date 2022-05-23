@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.AssetImporters;
-using ModularImporter;
 
-public class ModelsPostprocess : IPostprocessModule
+namespace ModularImporter
 {
-    public void Process(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object asset)
+    public class ModelsPostprocess : IPostprocessModule
     {
-        Debug.Log($"-- Module ModelsPostprocess {context.assetPath} {assetImporter} {asset.name}");
-        Debug.Log(ModelsPreprocess.sharedVariable);
+        public void Process(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object asset)
+        {
+            Debug.Log($"-- Module ModelsPostprocess {context.assetPath} {assetImporter} {asset.name}");
+            Debug.Log(ModelsPreprocess.sharedVariable);
+        }
     }
 }

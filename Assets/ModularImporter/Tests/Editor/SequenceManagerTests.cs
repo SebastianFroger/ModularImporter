@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.TestTools;
 using System.IO;
-using ModularImporter;
 
 namespace ModularImporter.Tests
 {

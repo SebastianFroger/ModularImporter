@@ -4,27 +4,30 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
-public class InspectorTestScript : MonoBehaviour
+namespace ModularImporter
 {
-    public UnityEngine.Object module;
-
-    public void Run()
+    public class InspectorTestScript : MonoBehaviour
     {
+        public UnityEngine.Object module;
 
-    }
-}
-
-[CustomEditor(typeof(InspectorTestScript))]
-public class InspectorTestScriptEditor : Editor
-{
-    public override void OnInspectorGUI()
-    {
-        DrawDefaultInspector();
-
-        InspectorTestScript myScript = (InspectorTestScript)target;
-        if (GUILayout.Button("run code"))
+        public void Run()
         {
-            myScript.Run();
+
+        }
+    }
+
+    [CustomEditor(typeof(InspectorTestScript))]
+    public class InspectorTestScriptEditor : Editor
+    {
+        public override void OnInspectorGUI()
+        {
+            DrawDefaultInspector();
+
+            InspectorTestScript myScript = (InspectorTestScript)target;
+            if (GUILayout.Button("run code"))
+            {
+                myScript.Run();
+            }
         }
     }
 }

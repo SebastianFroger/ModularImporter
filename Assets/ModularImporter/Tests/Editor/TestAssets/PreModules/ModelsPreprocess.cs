@@ -1,14 +1,16 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.AssetImporters;
-using ModularImporter;
 
-public class ModelsPreprocess : IPreprocessModule
+namespace ModularImporter
 {
-    public static string sharedVariable;
-    public void Process(AssetImportContext context, AssetImporter assetImporter)
+    public class ModelsPreprocess : IPreprocessModule
     {
-        sharedVariable = this.GetType().Name + " variable found";
-        Debug.Log($"-- Module ModelsPreprocess {context.assetPath} {assetImporter}");
+        public static string sharedVariable;
+        public void Process(AssetImportContext context, AssetImporter assetImporter)
+        {
+            sharedVariable = this.GetType().Name + " variable found";
+            Debug.Log($"-- Module ModelsPreprocess {context.assetPath} {assetImporter}");
+        }
     }
 }

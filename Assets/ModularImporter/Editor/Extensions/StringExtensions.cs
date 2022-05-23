@@ -1,10 +1,17 @@
+using UnityEngine;
 
-public static class StringExtensions
+namespace ModularImporter
 {
-    public static string AsUnityAssetPath(this string path)
+    public static class StringExtensions
     {
-        var x = path.Replace("\\", "/");
-        var c = x.Replace($"{System.IO.Directory.GetCurrentDirectory().Replace("\\", "/")}/", "");
-        return c;
+        public static string AsRelativePath(this string path)
+        {
+            return path.Replace("\\", "/").Replace($"{System.IO.Directory.GetCurrentDirectory().Replace("\\", "/")}/", "");
+        }
+
+        public static string AsAbsolutePath(this string path)
+        {
+            return path.Replace("Assets", Application.dataPath);
+        }
     }
 }

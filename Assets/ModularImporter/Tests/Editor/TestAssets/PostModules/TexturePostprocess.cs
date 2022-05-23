@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.AssetImporters;
-using ModularImporter;
 
-public class TexturePostprocess : IPostprocessModule
+namespace ModularImporter
 {
-    public void Process(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object asset)
+    public class TexturePostprocess : IPostprocessModule
     {
-        Debug.Log($"-- Module TexturePostprocess {context.assetPath} {assetImporter} {asset}");
-        Debug.Log(TexturePreprocess.sharedVariable);
+        public void Process(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object asset)
+        {
+            Debug.Log($"-- Module TexturePostprocess {context.assetPath} {assetImporter} {asset}");
+            Debug.Log(TexturePreprocess.sharedVariable);
+        }
     }
 }

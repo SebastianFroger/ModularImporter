@@ -17,7 +17,7 @@ namespace ModularImporter
             ImportSequence result = null;
             while (result == null && filePath != "Assets")
             {
-                filePath = Directory.GetParent(filePath).FullName.AsUnityAssetPath();
+                filePath = Directory.GetParent(filePath).FullName.AsRelativePath();
                 if (_sequences.ContainsKey(filePath))
                 {
                     result = (ImportSequence)AssetDatabase.LoadAssetAtPath(_sequences[filePath], typeof(ImportSequence));
@@ -35,7 +35,7 @@ namespace ModularImporter
             for (int i = 0; i < guids.Length; i++)
             {
                 var filePath = AssetDatabase.GUIDToAssetPath(guids[i]);
-                _sequences.Add(Path.GetDirectoryName(filePath).AsUnityAssetPath(), filePath);
+                _sequences.Add(Path.GetDirectoryName(filePath).AsRelativePath(), filePath);
             }
 
             Debug.Log($"{this.GetType().Name} - found {_sequences.Count} ImportSequences in project");

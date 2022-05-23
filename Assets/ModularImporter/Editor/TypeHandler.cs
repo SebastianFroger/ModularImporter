@@ -1,41 +1,44 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 using UnityEditor;
 
 namespace ModularImporter
 {
     public class TypeHandler
     {
-        static Type[] types;
-        static string assemblyName = "ImportScripts";
+        static List<Type> _types;
+        static string libraryPath = $"{Application.dataPath.Replace("Assets", "")}Library/ScriptAssemblies".Replace("/", @"\");
 
-        public static Type[] GetAssemblyTypes(UnityEngine.Object[] modules)
+        public TypeHandler()
         {
-            List<Type> types = new List<Type>();
-
-            Type[] assemblyTypes = GetTypesFromAssembly(assemblyName);
-            foreach (var file in modules)
-                foreach (var type in assemblyTypes)
-                    if (GetTypeName(type) == file.name)
-                        types.Add(type);
-
-            return types.ToArray();
+            CollectTypesFromAllAssemblies();
         }
 
-        static Type[] GetTypesFromAssembly(string assemblyName)
+        public Type GetType(string typeName)
         {
+            return _types.Find(t => GetTypeName(t) == typeName);
+        }
+
+        static void CollectTypesFromAllAssemblies()
+        {
+            _types = new List<Type>();
+
             foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
-                if (assembly.GetName().Name == assemblyName)
-                    return assembly.GetTypes();
-            return null;
+            {
+                if (!assembly.Location.StartsWith(libraryPath))
+                    continue;
+
+                _types.AddRange(assembly.GetTypes());
+            }
         }
 
-        public static string GetTypeName(Type type)
+        static string GetTypeName(Type type)
         {
-            string[] typeNameFull = type.FullName?.Split('.');
-            string typeNameLast = typeNameFull?[typeNameFull.Length - 1];
-            return typeNameLast;
+            return type.FullName?.Split('.').Last();
         }
     }
 }
