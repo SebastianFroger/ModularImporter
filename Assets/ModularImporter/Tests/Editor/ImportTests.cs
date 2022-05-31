@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using NUnit.Framework;
 using UnityEngine;
+using UnityEditor;
+using UnityEditor.Presets;
 using UnityEngine.TestTools;
 
 namespace ModularImporter
@@ -10,19 +12,20 @@ namespace ModularImporter
     {
         // A Test behaves as an ordinary method
         [Test]
-        public void ImportTestsSimplePasses()
+        public void ImportTestsApplyModelPreset()
         {
-            // Use the Assert class to test conditions
-        }
+            var resetPresetPath = "Assets/ModularImporter/Tests/Editor/TestAssets/Presets/FBXModelReset.preset";
+            var resetPreset = AssetDatabase.LoadAssetAtPath<Preset>(resetPresetPath);
 
-        // A UnityTest behaves like a coroutine in Play Mode. In Edit Mode you can use
-        // `yield return null;` to skip a frame.
-        [UnityTest]
-        public IEnumerator ImportTestsWithEnumeratorPasses()
-        {
-            // Use the Assert class to test conditions.
-            // Use yield to skip a frame.
-            yield return null;
+            var modelPath = "Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/Model/Robot Kyle.fbx";
+            ModelImporter modelImporter = (ModelImporter)AssetImporter.GetAtPath(modelPath);
+
+            if (!resetPreset.ApplyTo(modelImporter))
+                Debug.LogError($"Could not apply preset {resetPreset}");
+            Assert.IsTrue(modelImporter.importBlendShapes);
+
+            AssetDatabase.ImportAsset(modelPath);
+            Assert.IsFalse(modelImporter.importBlendShapes);
         }
     }
 }
