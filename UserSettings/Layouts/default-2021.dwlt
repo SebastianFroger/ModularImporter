@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: 2617
+    x: 2586
     y: 144
-    width: 809
+    width: 840
     height: 689
   m_ShowMode: 0
   m_Title: Test Runner
@@ -65,10 +65,10 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 809
+    width: 840
     height: 689
-  m_MinSize: {x: 100, y: 100}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 100, y: 121}
+  m_MaxSize: {x: 4000, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -92,12 +92,12 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 809
+    width: 840
     height: 689
   m_MinSize: {x: 100, y: 121}
   m_MaxSize: {x: 4000, y: 4021}
   vertical: 0
-  controlID: 352
+  controlID: 97
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -113,9 +113,9 @@ MonoBehaviour:
   m_Children: []
   m_Position:
     serializedVersion: 2
-    x: 592
+    x: 609
     y: 0
-    width: 1126
+    width: 1109
     height: 526
   m_MinSize: {x: 101, y: 121}
   m_MaxSize: {x: 4001, y: 4021}
@@ -148,7 +148,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 129
+  controlID: 27
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -198,7 +198,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: 118
+  controlID: 16
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -242,7 +242,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
-    width: 592
+    width: 609
     height: 526
   m_MinSize: {x: 231, y: 271}
   m_MaxSize: {x: 10001, y: 10021}
@@ -346,7 +346,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 119
+  controlID: 17
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -372,7 +372,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 120
+  controlID: 18
 --- !u!114 &16
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -420,16 +420,16 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2617
+    x: 2586
     y: 144
-    width: 809
+    width: 840
     height: 668
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
     m_SaveData: []
   m_Spl:
-    ID: 382
+    ID: 192
     splitterInitialOffset: 392
     currentActiveSplitter: -1
     realSizes:
@@ -495,9 +495,9 @@ MonoBehaviour:
       uniqueId: '[ModularImporter][suite]'
       name: ModularImporter
       fullName: ModularImporter
-      resultStatus: 1
-      duration: 0.0838066
-      messages: 
+      resultStatus: 2
+      duration: 0.382056
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -511,9 +511,9 @@ MonoBehaviour:
       uniqueId: '[ModularImporter.Tests.dll][suite]'
       name: ModularImporter.Tests.dll
       fullName: D:/ModularImporter/Library/ScriptAssemblies/ModularImporter.Tests.dll
-      resultStatus: 1
-      duration: 0.05334
-      messages: 
+      resultStatus: 2
+      duration: 0.349666
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -527,9 +527,9 @@ MonoBehaviour:
       uniqueId: ModularImporter.Tests.dll/[ModularImporter.Tests][ModularImporter][suite]
       name: ModularImporter
       fullName: ModularImporter
-      resultStatus: 1
-      duration: 0.0526971
-      messages: 
+      resultStatus: 2
+      duration: 0.3461053
+      messages: One or more child tests had errors
       output: 
       stacktrace: 
       notRunnable: 0
@@ -543,11 +543,75 @@ MonoBehaviour:
       uniqueId: ModularImporter.Tests.dll/ModularImporter/[ModularImporter.Tests][ModularImporter.ImportTests][suite]
       name: ImportTests
       fullName: ModularImporter.ImportTests
-      resultStatus: 0
-      duration: 0
-      messages: 
-      output: 
-      stacktrace: 
+      resultStatus: 2
+      duration: 0.3440644
+      messages: 'Unhandled log message: ''[Error] ModuleProcessor Preset FBXModel
+        cannot be applied to  (UnityEngine.PrefabImporter)''. Use UnityEngine.TestTools.LogAssert.Expect'
+      output: 'SequenceManager - found 2 ImportSequences in project
+
+        ModuleProcessor
+        applied Preset  (UnityEngine.FBXImporter)
+
+        -- Module ModelsPreprocess
+        Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/Model/Robot Kyle.fbx 
+        (UnityEngine.FBXImporter)
+
+        Prefab was saved successfully
+
+        --
+        Module ModelsPostprocess Assets/ModularImporter/Tests/Editor/TestAssets/Robot
+        Kyle/Model/Robot Kyle.fbx  (UnityEngine.FBXImporter) Robot Kyle
+
+        ModuleProcessor
+        Preset FBXModel cannot be applied to  (UnityEngine.PrefabImporter)
+
+        Importer(FBXImporter)
+        generated inconsistent result for asset(guid:320b1c2af77554f99a1658df4a6d3d5c)
+        "Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/Model/Robot Kyle.fbx"
+
+'
+      stacktrace: 'ModularImporter.SequenceProcessor:ApplyPreset (UnityEditor.Presets.Preset,UnityEngine.Object)
+        (at Assets/ModularImporter/Editor/SequenceProcessor.cs:75)
+
+        ModularImporter.SequenceProcessor:PreprocessAsset
+        (UnityEditor.AssetImporters.AssetImportContext,UnityEditor.AssetImporter,bool)
+        (at Assets/ModularImporter/Editor/SequenceProcessor.cs:33)
+
+        ModularImporter.UnityAssetPostProcessor:OnPreprocessAsset
+        () (at Assets/ModularImporter/Editor/UnityAssetPostProcessor.cs:13)
+
+        UnityEditor.AssetDatabase:ImportAsset
+        (string)
+
+        ModularImporter.ImportTests:ResetImportAsset () (at Assets/ModularImporter/Tests/Editor/ImportTests.cs:34)
+
+        System.Reflection.MethodBase:Invoke
+        (object,object[])
+
+        NUnit.Framework.Internal.Reflect:InvokeMethod
+        (System.Reflection.MethodInfo,object,object[])
+
+        NUnit.Framework.Internal.Reflect:InvokeMethod
+        (System.Reflection.MethodInfo,object)
+
+        NUnit.Framework.Internal.Commands.SetUpTearDownItem:RunNonAsyncMethod
+        (System.Reflection.MethodInfo,NUnit.Framework.Internal.ITestExecutionContext)
+
+        NUnit.Framework.Internal.Commands.SetUpTearDownItem:RunSetUpOrTearDownMethod
+        (NUnit.Framework.Internal.ITestExecutionContext,System.Reflection.MethodInfo)
+
+        NUnit.Framework.Internal.Commands.SetUpTearDownItem:RunSetUp
+        (NUnit.Framework.Internal.ITestExecutionContext)
+
+        NUnit.Framework.Internal.Commands.OneTimeSetUpCommand:Execute
+        (NUnit.Framework.Internal.ITestExecutionContext)
+
+        UnityEditor.EditorApplication:Internal_CallUpdateFunctions
+        ()
+
+        
+
+'
       notRunnable: 0
       ignoredOrSkipped: 0
       description: 
@@ -556,11 +620,11 @@ MonoBehaviour:
       parentId: 1010
       parentUniqueId: ModularImporter.Tests.dll/[ModularImporter.Tests][ModularImporter][suite]
     - id: 1002
-      uniqueId: ModularImporter.Tests.dll/ModularImporter/ImportTests/[ModularImporter.Tests][ModularImporter.ImportTests.ImportTestsSimplePasses]
-      name: ImportTestsSimplePasses
-      fullName: ModularImporter.ImportTests.ImportTestsSimplePasses
-      resultStatus: 0
-      duration: 0
+      uniqueId: ModularImporter.Tests.dll/ModularImporter/ImportTests/[ModularImporter.Tests][ModularImporter.ImportTests.ApplyModelPreset]
+      name: ApplyModelPreset
+      fullName: ModularImporter.ImportTests.ApplyModelPreset
+      resultStatus: 1
+      duration: 0.0001119
       messages: 
       output: 
       stacktrace: 
@@ -572,12 +636,30 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1001
       parentUniqueId: ModularImporter.Tests.dll/ModularImporter/[ModularImporter.Tests][ModularImporter.ImportTests][suite]
-    - id: 1003
-      uniqueId: ModularImporter.Tests.dll/ModularImporter/ImportTests/[ModularImporter.Tests][ModularImporter.ImportTests.ImportTestsWithEnumeratorPasses]
-      name: ImportTestsWithEnumeratorPasses
-      fullName: ModularImporter.ImportTests.ImportTestsWithEnumeratorPasses
-      resultStatus: 0
+    - id: 1004
+      uniqueId: ModularImporter.Tests.dll/ModularImporter/ImportTests/[ModularImporter.Tests][ModularImporter.ImportTests.ApplyPostprocessModule]
+      name: ApplyPostprocessModule
+      fullName: ModularImporter.ImportTests.ApplyPostprocessModule
+      resultStatus: 2
       duration: 0
+      messages: 'OneTimeSetUp: Unhandled log message: ''[Error] ModuleProcessor Preset
+        FBXModel cannot be applied to  (UnityEngine.PrefabImporter)''. Use UnityEngine.TestTools.LogAssert.Expect'
+      output: 
+      stacktrace: 
+      notRunnable: 0
+      ignoredOrSkipped: 0
+      description: 
+      isSuite: 0
+      categories:
+      - Uncategorized
+      parentId: 1001
+      parentUniqueId: ModularImporter.Tests.dll/ModularImporter/[ModularImporter.Tests][ModularImporter.ImportTests][suite]
+    - id: 1003
+      uniqueId: ModularImporter.Tests.dll/ModularImporter/ImportTests/[ModularImporter.Tests][ModularImporter.ImportTests.ApplyPreprocessModule]
+      name: ApplyPreprocessModule
+      fullName: ModularImporter.ImportTests.ApplyPreprocessModule
+      resultStatus: 1
+      duration: 0.0000664
       messages: 
       output: 
       stacktrace: 
@@ -593,8 +675,8 @@ MonoBehaviour:
       uniqueId: ModularImporter.Tests.dll/ModularImporter/[ModularImporter.Tests][ModularImporter.Tests][suite]
       name: Tests
       fullName: ModularImporter.Tests
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0221199
       messages: 
       output: 
       stacktrace: 
@@ -609,8 +691,8 @@ MonoBehaviour:
       uniqueId: ModularImporter.Tests.dll/ModularImporter/Tests/[ModularImporter.Tests][ModularImporter.Tests.SequenceManagerTests][suite]
       name: SequenceManagerTests
       fullName: ModularImporter.Tests.SequenceManagerTests
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0191049
       messages: 
       output: 
       stacktrace: 
@@ -625,10 +707,12 @@ MonoBehaviour:
       uniqueId: ModularImporter.Tests.dll/ModularImporter/Tests/SequenceManagerTests/[ModularImporter.Tests][ModularImporter.Tests.SequenceManagerTests.GetSequenceInDir]
       name: GetSequenceInDir
       fullName: ModularImporter.Tests.SequenceManagerTests.GetSequenceInDir
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0248496
       messages: 
-      output: 
+      output: 'SequenceManager - found 2 ImportSequences in project
+
+'
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
@@ -642,10 +726,12 @@ MonoBehaviour:
       uniqueId: ModularImporter.Tests.dll/ModularImporter/Tests/SequenceManagerTests/[ModularImporter.Tests][ModularImporter.Tests.SequenceManagerTests.GetSequenceInParentDir]
       name: GetSequenceInParentDir
       fullName: ModularImporter.Tests.SequenceManagerTests.GetSequenceInParentDir
-      resultStatus: 0
-      duration: 0
+      resultStatus: 1
+      duration: 0.0148496
       messages: 
-      output: 
+      output: 'SequenceManager - found 2 ImportSequences in project
+
+'
       stacktrace: 
       notRunnable: 0
       ignoredOrSkipped: 0
@@ -688,13 +774,19 @@ MonoBehaviour:
       - Uncategorized
       parentId: 1004
       parentUniqueId: ModularImporter.Tests.dll/ModularImporter/[ModularImporter.Tests][ModularImporter.TypeHandlerTests][suite]
-    m_ResultText: GetTypeTest (0.038s)
+    m_ResultText: 'ApplyPostprocessModule (0.000s)
+
+      ---
+
+      OneTimeSetUp:
+      Unhandled log message: ''[Error] ModuleProcessor Preset FBXModel cannot be
+      applied to  (UnityEngine.PrefabImporter)''. Use UnityEngine.TestTools.LogAssert.Expect'
     m_ResultStacktrace: 
     m_TestListState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 9df0df14
-      m_LastClickedID: 350220445
-      m_ExpandedIDs: 7939828175bbb49d1f58dab326da0303004436213edbba6631302c7effffff7f
+      m_SelectedIDs: 227bdad1
+      m_LastClickedID: -774210782
+      m_ExpandedIDs: 75bbb49d1f58dab326da0303004436213edbba6631302c7effffff7f
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -742,7 +834,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1714
     y: 846
-    width: 591
+    width: 608
     height: 505
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
@@ -774,9 +866,9 @@ MonoBehaviour:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 0e5a0000
-    m_LastClickedID: 23054
-    m_ExpandedIDs: 00000000ec590000ee590000f0590000f2590000f4590000f6590000f859000000ca9a3bffffff7f
+    m_SelectedIDs: 185a0000
+    m_LastClickedID: 23064
+    m_ExpandedIDs: 00000000f4590000f6590000f8590000fa590000fc590000fe590000005a000000ca9a3bffffff7f
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -804,7 +896,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000ec590000ee590000f0590000f2590000f4590000f6590000f8590000
+    m_ExpandedIDs: 00000000f4590000f6590000f8590000fa590000fc590000fe590000005a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -831,22 +923,22 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 1
+    m_HadKeyboardFocusLastEvent: 0
     m_ExpandedInstanceIDs: c6230000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: TypeHandlerTests
-      m_OriginalName: TypeHandlerTests
+      m_Name: 
+      m_OriginalName: 
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 23112
+      m_UserData: 0
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 0
+      m_OriginalEventType: 11
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 10}
     m_CreateAssetUtility:
@@ -932,9 +1024,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 365a0000
+      m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: ccbcffffc6bdffffbcbeffffb6bfffffb0c0fffffac1fffff4c2ffffc6c9ffffe0caffffe6cbfffff4ccffff28cfffff22d0ffff92d0ffff02d1fffffcd1fffff6d2ffffa4d4ffffaad5ffff6cd7ffffb6d8ffffd4d9ffff4cdaffffccdaffffd6dbfffff0dcfffff6ddffff72deffff7cdfffff8ce0ffff96e1fffface2ffffb6e3ffff68e5ffff76e6ffff7ce7fffffce7ffff0ee9ffff18eaffff22ebffff40ecffff4eedffff6eeeffff80efffff1af1ffffb6f1ffffb8f2ffffc6f3ffffbcf4ffff30f5ffff2ef6ffffe4f6ffff5ef7ffff30fbffff
+      m_ExpandedIDs: 42faffff3afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1375,9 +1467,9 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 2306
+    x: 2323
     y: 846
-    width: 1125
+    width: 1108
     height: 505
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:

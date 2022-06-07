@@ -9,7 +9,7 @@ namespace ModularImporter
         public static string sharedVariable;
         public void Process(AssetImportContext context, AssetImporter assetImporter)
         {
-            sharedVariable = this.GetType().Name + " variable found";
+            ImportTests.preprocessModuleExecuted = true;
             Debug.Log($"-- Module ModelsPreprocess {context.assetPath} {assetImporter}");
         }
     }

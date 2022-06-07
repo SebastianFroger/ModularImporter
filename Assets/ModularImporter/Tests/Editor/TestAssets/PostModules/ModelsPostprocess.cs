@@ -8,8 +8,8 @@ namespace ModularImporter
     {
         public void Process(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object asset)
         {
+            ImportTests.postprocessModuleExecuted = true;
             Debug.Log($"-- Module ModelsPostprocess {context.assetPath} {assetImporter} {asset.name}");
-            Debug.Log(ModelsPreprocess.sharedVariable);
         }
     }
 }
