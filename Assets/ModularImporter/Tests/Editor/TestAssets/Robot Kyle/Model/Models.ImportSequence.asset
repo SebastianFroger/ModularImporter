@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a937708ccb394e4fa7f9a48ae66b988, type: 3}
-  m_Name: ModularImportSequence.ImportSequence
+  m_Name: Models.ImportSequence
   m_EditorClassIdentifier: 
+  validationModules:
+  - {fileID: 11500000, guid: f8ad17026ca5a0e4fbf044d3efadd902, type: 3}
   preprocessAssetModules:
   - {fileID: 2655988077585873504, guid: 4469be87465e31549945511717a32784, type: 2}
   preprocessTypedModules:
