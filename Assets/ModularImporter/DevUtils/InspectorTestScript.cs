@@ -10,18 +10,12 @@ namespace ModularImporter
     {
         public UnityEngine.Object module;
 
-        static SequenceManager _sequenceManager = new SequenceManager();
-        static TypeHandler _typeHandler = new TypeHandler();
-
         public void Run()
         {
-            Type type = _typeHandler.GetType(module.name);
-            var inst = Activator.CreateInstance(type) as IPreprocessModule;
-            
-            
+
         }
     }
-
+#if UNITY_EDITOR
     [CustomEditor(typeof(InspectorTestScript))]
     public class InspectorTestScriptEditor : Editor
     {
@@ -36,6 +30,7 @@ namespace ModularImporter
             }
         }
     }
+#endif
 }
 
 
