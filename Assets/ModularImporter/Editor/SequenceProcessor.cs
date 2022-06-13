@@ -19,6 +19,9 @@ namespace ModularImporter
             if (sequence == null)
                 return;
 
+            if(!IsValidAsset(context, assetImporter, sequence)) 
+                return;
+
             UnityEngine.Object[] modules;
             if (!typedAsset)
                 modules = sequence.preprocessAssetModules;
@@ -27,12 +30,8 @@ namespace ModularImporter
 
             foreach (var module in modules)
             {
-                // apply preset
                 if (module is Preset)
-                {
                     ApplyPreset((Preset)module, assetImporter);
-                    continue;
-                }
 
                 if (module is MonoScript)
                 {
@@ -50,15 +49,14 @@ namespace ModularImporter
             if (sequence == null)
                 return;
 
+            if(!IsValidAsset(context, assetImporter, sequence)) 
+                return;
+
             foreach (var module in sequence.postprocessTypedModules)
             {
-                // apply preset
                 if (module is Preset)
-                {
                     ApplyPreset((Preset)module, assetImporter);
-                }
 
-                // execute monoscript
                 if (module is MonoScript)
                 {
                     Type type = _typeHandler.GetType(module.name);
@@ -66,6 +64,22 @@ namespace ModularImporter
                     inst.Process(context, assetImporter, unityObject);
                 }
             }
+        }
+
+        static bool IsValidAsset(AssetImportContext context, AssetImporter assetImporter, ImportSequence sequence)
+        {
+            foreach (var module in sequence.validationModules)
+            {
+                if (module is MonoScript)
+                {
+                    Type type = _typeHandler.GetType(module.name);
+                    var inst = Activator.CreateInstance(type) as IValidationModule;
+                    if(!inst.Validate(context, assetImporter))
+                        return false;
+                }
+            }
+
+            return true; 
         }
 
         static void ApplyPreset(Preset preset, UnityEngine.Object asset)
