@@ -14,7 +14,7 @@ namespace ModularImporter.Tests
         public void GetSequenceInDir()
         {
             var assetPath = "Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/Model/Robot Kyle.fbx";
-            var sequencePath = "Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/Model/ModularImportSequence.ImportSequence.asset";
+            var sequencePath = "Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/Model/Models.ImportSequence.asset";
             var result = new SequenceManager().GetNearestSequenceTo(assetPath);
             Assert.AreEqual(sequencePath, AssetDatabase.GetAssetPath(result));
         }
@@ -23,7 +23,7 @@ namespace ModularImporter.Tests
         public void GetSequenceInParentDir()
         {
             var assetPath = "Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/Textures/Robot_Normal.tga";
-            var sequencePath = "Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/ModularImportSequence.ImportSequence.asset";
+            var sequencePath = "Assets/ModularImporter/Tests/Editor/TestAssets/Robot Kyle/Models.ImportSequence.asset";
             var result = new SequenceManager().GetNearestSequenceTo(assetPath);
             Assert.AreEqual(sequencePath, AssetDatabase.GetAssetPath(result));
         }
