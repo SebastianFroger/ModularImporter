@@ -212,6 +212,7 @@ Transform:
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
@@ -295,11 +296,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &2128155871
+--- !u!1001 &2022412603
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -354,5 +356,24 @@ PrefabInstance:
       propertyPath: m_Name
       value: InspectorTestButton
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8269847752061638085, guid: b550fab96f67ea04cbb458dcdc8f7c10, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b550fab96f67ea04cbb458dcdc8f7c10, type: 3}
+--- !u!1 &2022412604 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5740283181329766472, guid: b550fab96f67ea04cbb458dcdc8f7c10, type: 3}
+  m_PrefabInstance: {fileID: 2022412603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2022412605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2022412604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6abb8afa2df2e5e4aa7a37168765ede8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  module: {fileID: 11500000, guid: 5165aacbd953c03479ed8cdd50fc21a4, type: 3}

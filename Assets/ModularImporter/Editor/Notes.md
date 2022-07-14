@@ -12,8 +12,9 @@ add settings file with assets roodir and filetypes to ignore/include. scriptable
     - preprocess
     - postprocess
 
-use OnValidate() in inspector
-create asset object to pass AssetImportContext context and AssetImporter assetImporte around and avoid using import references in all files???
+create asset object to pass AssetImportContext context and AssetImporter assetImporte around and avoid using import
+references in all files???
+
 add exceptionhandling to SequenceProcessor
 get sequences in parent dirs and apply all from the top dir down
 check types adn sequences are not loaded every time!
@@ -22,4 +23,3 @@ write git readme
 
 Notes:
 add params[] object in interface methods
-get parameterInfos for each in a method

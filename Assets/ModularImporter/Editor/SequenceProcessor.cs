@@ -19,10 +19,10 @@ namespace ModularImporter
             if (sequence == null)
                 return;
 
-            if(!IsValidAsset(context, assetImporter, sequence)) 
+            if (!IsValidAsset(context, assetImporter, sequence))
                 return;
 
-            UnityEngine.Object[] modules;
+            Module[] modules;
             if (!typedAsset)
                 modules = sequence.preprocessAssetModules;
             else
@@ -30,12 +30,12 @@ namespace ModularImporter
 
             foreach (var module in modules)
             {
-                if (module is Preset)
-                    ApplyPreset((Preset)module, assetImporter);
+                if (module.script is Preset)
+                    ApplyPreset((Preset)module.script, assetImporter);
 
-                if (module is MonoScript)
+                if (module.script is MonoScript)
                 {
-                    Type type = _typeHandler.GetType(module.name);
+                    Type type = _typeHandler.GetType(module.script.name);
                     var inst = Activator.CreateInstance(type) as IPreprocessModule;
                     inst.Process(context, assetImporter);
                 }
@@ -49,17 +49,17 @@ namespace ModularImporter
             if (sequence == null)
                 return;
 
-            if(!IsValidAsset(context, assetImporter, sequence)) 
+            if (!IsValidAsset(context, assetImporter, sequence))
                 return;
 
             foreach (var module in sequence.postprocessTypedModules)
             {
-                if (module is Preset)
-                    ApplyPreset((Preset)module, assetImporter);
+                if (module.script is Preset)
+                    ApplyPreset((Preset)module.script, assetImporter);
 
-                if (module is MonoScript)
+                if (module.script is MonoScript)
                 {
-                    Type type = _typeHandler.GetType(module.name);
+                    Type type = _typeHandler.GetType(module.script.name);
                     var inst = Activator.CreateInstance(type) as IPostprocessModule;
                     inst.Process(context, assetImporter, unityObject);
                 }
@@ -70,17 +70,33 @@ namespace ModularImporter
         {
             foreach (var module in sequence.validationModules)
             {
-                if (module is MonoScript)
+                if (module.data is IValidationModule)
                 {
-                    Type type = _typeHandler.GetType(module.name);
-                    var inst = Activator.CreateInstance(type) as IValidationModule;
-                    if(!inst.Validate(context, assetImporter))
-                        return false;
+                    Debug.Log("is IValidationModule");
+                    // if ((IValidationModule)module.data.Run(context, assetImporter))
+                    //     return false;
                 }
             }
 
-            return true; 
+            return true;
         }
+
+
+        // static bool IsValidAsset(AssetImportContext context, AssetImporter assetImporter, ImportSequence sequence)
+        // {
+        //     foreach (var module in sequence.validationModules)
+        //     {
+        //         if (module.script is MonoScript)
+        //         {
+        //             Type type = _typeHandler.GetType(module.script.name);
+        //             var inst = Activator.CreateInstance(type) as IValidationModule;
+        //             if (!inst.Validate(context, assetImporter))
+        //                 return false;
+        //         }
+        //     }
+
+        //     return true;
+        // }
 
         static void ApplyPreset(Preset preset, UnityEngine.Object asset)
         {
