@@ -1,63 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
-using UnityEditor.AssetImporters;
-using System.Reflection;
+using UnityEditor.Presets;
+using System.Linq;
 
-// https://docs.microsoft.com/en-us/dotnet/api/system.reflection.parameterinfo?view=net-6.0
 namespace ModularImporter
 {
-    public class InspectorTestScript : MonoBehaviour
+    [Serializable]
+    [CreateAssetMenu(fileName = "InspectorTestScript", menuName = "Modular Importer/InspectorTestScript", order = 1)]
+    public class InspectorTestScript : ScriptableObject
     {
-        public UnityEngine.Object module;
+        public bool executeOnValidate;
 
-        public TypeHandler _typeHandler;
-
-        public void Run()
+        void OnValidate()
         {
-            Debug.Log("Running module");
-            
-            Type type = _typeHandler.GetType(module.name);
-            var inst = Activator.CreateInstance(type);
-            
-            Debug.Log("type is " + inst.GetType().ToString());
 
-            ConstructorInfo[] constrctorInfo = type.GetConstructors();
-            foreach (var constructor in constrctorInfo)
-            {
-                Debug.Log("name " + constructor.Name);
 
-                foreach (var param in constructor.GetParameters())
-                {
-                    Debug.Log($"type {param.ParameterType} name {param.Name}");
-                    
-                }
-            }
         }
-    }
 
-    [CustomEditor(typeof(InspectorTestScript))]
-    public class InspectorTestScriptEditor : Editor
-    {
-        public override void OnInspectorGUI()
-        {
-            DrawDefaultInspector();
-
-            InspectorTestScript myScript = (InspectorTestScript)target;
-
-
-            if (GUILayout.Button("run code"))
-            {
-                var dataPath = Application.dataPath;
-                Debug.Log(dataPath);
-
-                myScript._typeHandler = new ();
-                myScript.Run();
-            }
-        }
     }
 }
-
-

@@ -7,6 +7,6 @@ namespace ModularImporter
     public class Module
     {
         public UnityEngine.Object script;
-        [SerializeReference] public IModule data;
+        [SerializeReference] public IImportModule data;
     }
 }

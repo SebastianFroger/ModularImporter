@@ -12,42 +12,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a937708ccb394e4fa7f9a48ae66b988, type: 3}
   m_Name: Template.ImportSequence
   m_EditorClassIdentifier: 
-  validationModules:
+  preprocessAssetModules:
   - script: {fileID: 0}
     data:
       rid: -2
+  - script: {fileID: 11500000, guid: e624ebcc7b3b4b94c812651f8c35e39e, type: 3}
+    data:
+      rid: 8968621183701352450
   - script: {fileID: 11500000, guid: a0a27213b43ac6c479e0ef75d6cdc547, type: 3}
     data:
-      rid: 2048969779417186304
-  - script: {fileID: 11500000, guid: a0a27213b43ac6c479e0ef75d6cdc547, type: 3}
-    data:
-      rid: 2048969779491373056
-  - script: {fileID: 11500000, guid: c55fe046c58050f40b4226a81e3c486a, type: 3}
-    data:
-      rid: 2048969779571589120
-  preprocessAssetModules: []
+      rid: 8968621183701352449
   preprocessTypedModules: []
   postprocessTypedModules: []
-  ExecuteParentSequence: 0
+  executeParentSequence: 0
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 2048969779417186304
+    - rid: 8968621183701352449
       type: {class: TestModuleA, ns: ModularImporter, asm: Assembly-CSharp}
       data:
-        someNameA: 23
-        someIntA: 213
-        someBoolA: 0
-    - rid: 2048969779491373056
-      type: {class: TestModuleA, ns: ModularImporter, asm: Assembly-CSharp}
+        someNameA: modulenametest
+        someIntA: 12
+        someBoolA: 1
+    - rid: 8968621183701352450
+      type: {class: IsValidFileExtension, ns: ModularImporter, asm: Assembly-CSharp}
       data:
-        someNameA: 
-        someIntA: 0
-        someBoolA: 0
-    - rid: 2048969779571589120
-      type: {class: TestModuleA1, ns: ModularImporter, asm: Assembly-CSharp}
-      data:
-        somefloatA1: 4
-        someboolA1: 1
+        validExtensions: .fbx,.png

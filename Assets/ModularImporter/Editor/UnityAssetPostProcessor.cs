@@ -7,10 +7,13 @@ namespace ModularImporter
     {
         ////////////////////////////////// PREPROCESS ASSET //////////////////////////////////
 
+        SequenceProcessor processor;
+
         //NOTE: passes assetImporter of asset type (FBXImporter, TextureImporter...)
         void OnPreprocessAsset()
         {
-            SequenceProcessor.PreprocessAsset(context, assetImporter, false);
+            processor = new SequenceProcessor(context);
+            processor.Run(ImportStep.OnPreprocessAsset, context, assetImporter);
         }
 
 
@@ -19,27 +22,27 @@ namespace ModularImporter
         // passes on FBXImporter
         void OnPreprocessModel()
         {
-            SequenceProcessor.PreprocessAsset(context, assetImporter, true);
+            processor.Run(ImportStep.OnPreprocessTypedAsset, context, assetImporter);
         }
 
-        // passes on TextureImporter
-        void OnPreprocessTexture()
-        {
-            SequenceProcessor.PreprocessAsset(context, assetImporter, true);
-        }
+        // // passes on TextureImporter
+        // void OnPreprocessTexture()
+        // {
+        //     SequenceProcessor.Preprocess(context, assetImporter, true);
+        // }
 
 
         ////////////////////////////////// POSTPROCESS TYPED //////////////////////////////////
 
         void OnPostprocessModel(GameObject gameObject)
         {
-            SequenceProcessor.PostprocessAsset(context, assetImporter, gameObject);
+            processor.Run(ImportStep.OnPostprocessTypedAsset, context, assetImporter, gameObject);
         }
 
-        void OnPostprocessTexture(Texture2D texture)
-        {
-            SequenceProcessor.PostprocessAsset(context, assetImporter, texture);
-        }
+        // void OnPostprocessTexture(Texture2D texture)
+        // {
+        //     SequenceProcessor.Postprocess(context, assetImporter, texture);
+        // }
 
         // void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         // {

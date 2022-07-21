@@ -6,17 +6,15 @@ using UnityEditor;
 namespace ModularImporter
 {
     [Serializable]
-    public class TestModuleA : IImportModule
+    public class TestModuleB : IImportModule
     {
-        public string someNameA;
-        public int someIntA;
-        public bool someBoolA;
+        public float somefloatA1;
+        public bool someboolA1;
 
         public bool Run(AssetImportContext context, AssetImporter assetImporter, GameObject gameObject = null)
         {
-            // your code here
-            Debug.Log("TestModuleA " + context.assetPath);
-            throw new Exception("module exception");
+            Debug.Log("TestModuleB " + context.assetPath);
+            return true;
         }
     }
 }

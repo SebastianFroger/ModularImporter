@@ -1,113 +1,75 @@
 using UnityEngine;
-using System;
 using UnityEditor;
 using UnityEditor.Presets;
 using UnityEditor.AssetImporters;
-using System.Collections.Generic;
 
 namespace ModularImporter
 {
     public class SequenceProcessor
     {
-        static SequenceManager _sequenceManager = new SequenceManager();
-        static TypeHandler _typeHandler = new TypeHandler();
+        SequenceManager _sequenceManager = new SequenceManager(); // TODO: static to share already found sequences???
+        ImportSequence _sequence;
+        bool _failedValidation;
 
-        public static void PreprocessAsset(AssetImportContext context, AssetImporter assetImporter, bool typedAsset)
+        public SequenceProcessor(AssetImportContext context)
         {
-            // Get Sequence
-            var sequence = _sequenceManager.GetNearestSequenceTo(context.assetPath);
-            if (sequence == null)
-                return;
+            _sequence = _sequenceManager.GetNearestSequenceTo(context.assetPath);
 
-            if (!IsValidAsset(context, assetImporter, sequence))
-                return;
+            // TODO: add log about currently processed file and what sequences where found
+        }
 
-            Module[] modules;
-            if (!typedAsset)
-                modules = sequence.preprocessAssetModules;
-            else
-                modules = sequence.preprocessTypedModules;
+        public void Run(ImportStep importStep, AssetImportContext context, AssetImporter assetImporter, GameObject gameObject = null)
+        {
+            if (_failedValidation) return;
 
-            foreach (var module in modules)
+            foreach (var module in GetModuleArray(importStep))
             {
+                if (module.script == null)
+                    continue;
+
                 if (module.script is Preset)
-                    ApplyPreset((Preset)module.script, assetImporter);
-
-                if (module.script is MonoScript)
                 {
-                    Type type = _typeHandler.GetType(module.script.name);
-                    var inst = Activator.CreateInstance(type) as IPreprocessModule;
-                    inst.Process(context, assetImporter);
+                    Preset preset = (Preset)module.script;
+                    if (preset.CanBeAppliedTo(assetImporter))
+                    {
+                        preset.ApplyTo(assetImporter);
+                        Debug.Log($"ModuleProcessor applied Preset {assetImporter}");
+                        continue;
+                    }
+
+                    // TODO: log and print error
+                    Debug.LogError($"ModuleProcessor Preset {preset.name} cannot be applied to {assetImporter}");
+                    return;
+                }
+
+                if (module.data is IImportModule)
+                {
+                    try
+                    {
+                        if (module.data.Run(context, assetImporter, gameObject))
+                            continue;
+
+                        if (_sequence.stopOnFailedModule)
+                            _failedValidation = true;
+                        return;
+                    }
+                    catch (System.Exception e)
+                    {
+                        if (_sequence.stopOnFailedModule)
+                            _failedValidation = true;
+
+                        // TODO: log and print error
+                        Debug.Log($"Failed to run module {module.script.name}.\n{e}");
+                    }
                 }
             }
         }
 
-        public static void PostprocessAsset(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject)
+        Module[] GetModuleArray(ImportStep importStep) => importStep switch
         {
-            // Get Sequence and types
-            var sequence = _sequenceManager.GetNearestSequenceTo(context.assetPath);
-            if (sequence == null)
-                return;
-
-            if (!IsValidAsset(context, assetImporter, sequence))
-                return;
-
-            foreach (var module in sequence.postprocessTypedModules)
-            {
-                if (module.script is Preset)
-                    ApplyPreset((Preset)module.script, assetImporter);
-
-                if (module.script is MonoScript)
-                {
-                    Type type = _typeHandler.GetType(module.script.name);
-                    var inst = Activator.CreateInstance(type) as IPostprocessModule;
-                    inst.Process(context, assetImporter, unityObject);
-                }
-            }
-        }
-
-        static bool IsValidAsset(AssetImportContext context, AssetImporter assetImporter, ImportSequence sequence)
-        {
-            foreach (var module in sequence.validationModules)
-            {
-                if (module.data is IValidationModule)
-                {
-                    Debug.Log("is IValidationModule");
-                    // if ((IValidationModule)module.data.Run(context, assetImporter))
-                    //     return false;
-                }
-            }
-
-            return true;
-        }
-
-
-        // static bool IsValidAsset(AssetImportContext context, AssetImporter assetImporter, ImportSequence sequence)
-        // {
-        //     foreach (var module in sequence.validationModules)
-        //     {
-        //         if (module.script is MonoScript)
-        //         {
-        //             Type type = _typeHandler.GetType(module.script.name);
-        //             var inst = Activator.CreateInstance(type) as IValidationModule;
-        //             if (!inst.Validate(context, assetImporter))
-        //                 return false;
-        //         }
-        //     }
-
-        //     return true;
-        // }
-
-        static void ApplyPreset(Preset preset, UnityEngine.Object asset)
-        {
-            if (!preset.CanBeAppliedTo(asset))
-            {
-                Debug.LogError($"ModuleProcessor Preset {preset.name} cannot be applied to {asset}");
-                return;
-            }
-
-            preset.ApplyTo(asset);
-            Debug.Log($"ModuleProcessor applied Preset {asset}");
-        }
+            ImportStep.OnPreprocessAsset => _sequence.preprocessAssetModules,
+            ImportStep.OnPreprocessTypedAsset => _sequence.preprocessTypedModules,
+            ImportStep.OnPostprocessTypedAsset => _sequence.postprocessTypedModules,
+        };
     }
 }
