@@ -8,15 +8,13 @@ namespace ModularImporter
     [Serializable]
     public class TestModuleA : IImportModule
     {
-        public string someNameA;
-        public int someIntA;
-        public bool someBoolA;
+        public string someVariable;
 
-        public bool Run(AssetImportContext context, AssetImporter assetImporter, GameObject gameObject = null)
+        public bool Run(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
         {
             // your code here
-            Debug.Log("TestModuleA " + context.assetPath);
-            throw new Exception("module exception");
+            Debug.Log("--- TestModuleA " + context.assetPath);
+            return true;
         }
     }
 }

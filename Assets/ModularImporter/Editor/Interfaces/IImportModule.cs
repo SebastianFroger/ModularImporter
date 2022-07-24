@@ -6,6 +6,6 @@ namespace ModularImporter
 {
     public interface IImportModule
     {
-        bool Run(AssetImportContext context, AssetImporter assetImporter, GameObject gameObject = null);
+        bool Run(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null);
     }
 }

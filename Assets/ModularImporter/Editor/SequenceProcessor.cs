@@ -7,18 +7,18 @@ namespace ModularImporter
 {
     public class SequenceProcessor
     {
-        SequenceManager _sequenceManager = new SequenceManager(); // TODO: static to share already found sequences???
+        // SequenceManager _sequenceManager; // TODO: static to share already found sequences???
         ImportSequence _sequence;
         bool _failedValidation;
 
         public SequenceProcessor(AssetImportContext context)
         {
-            _sequence = _sequenceManager.GetNearestSequenceTo(context.assetPath);
+            _sequence = SequenceManager.GetSequenceFor(context.assetPath);
 
             // TODO: add log about currently processed file and what sequences where found
         }
 
-        public void Run(ImportStep importStep, AssetImportContext context, AssetImporter assetImporter, GameObject gameObject = null)
+        public void Run(ImportStep importStep, AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
         {
             if (_failedValidation) return;
 
@@ -46,7 +46,7 @@ namespace ModularImporter
                 {
                     try
                     {
-                        if (module.data.Run(context, assetImporter, gameObject))
+                        if (module.data.Run(context, assetImporter, unityObject))
                             continue;
 
                         if (_sequence.stopOnFailedModule)
@@ -68,8 +68,8 @@ namespace ModularImporter
         Module[] GetModuleArray(ImportStep importStep) => importStep switch
         {
             ImportStep.OnPreprocessAsset => _sequence.preprocessAssetModules,
-            ImportStep.OnPreprocessTypedAsset => _sequence.preprocessTypedModules,
-            ImportStep.OnPostprocessTypedAsset => _sequence.postprocessTypedModules,
+            ImportStep.OnPreprocessType => _sequence.preprocessTypedModules,
+            ImportStep.OnPostprocessType => _sequence.postprocessTypedModules,
         };
     }
 }

@@ -10,7 +10,7 @@ namespace ModularImporter
     {
         public string validExtensions;
 
-        public bool Run(AssetImportContext context, AssetImporter assetImporter, GameObject gameObject)
+        public bool Run(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
         {
             var extension = Path.GetExtension(context.assetPath);
             var isValid = validExtensions.Split(",").Contains(extension);

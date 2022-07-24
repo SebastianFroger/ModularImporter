@@ -46,13 +46,11 @@ MonoBehaviour:
     - rid: 8968621183701352451
       type: {class: IsValidFileExtension, ns: ModularImporter, asm: Assembly-CSharp}
       data:
-        validExtensions: .png
+        validExtensions: .tga
     - rid: 8968621183701352452
       type: {class: TestModuleA, ns: ModularImporter, asm: Assembly-CSharp}
       data:
-        someNameA: 
-        someIntA: 0
-        someBoolA: 0
+        someVariable: 
     - rid: 8968621183701352455
       type: {class: TestModuleB, ns: ModularImporter, asm: Assembly-CSharp}
       data:

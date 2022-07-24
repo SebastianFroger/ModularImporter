@@ -19,30 +19,28 @@ namespace ModularImporter
 
         ////////////////////////////////// PREPROCESS TYPED //////////////////////////////////
 
-        // passes on FBXImporter
         void OnPreprocessModel()
         {
-            processor.Run(ImportStep.OnPreprocessTypedAsset, context, assetImporter);
+            processor.Run(ImportStep.OnPreprocessType, context, assetImporter);
         }
 
-        // // passes on TextureImporter
-        // void OnPreprocessTexture()
-        // {
-        //     SequenceProcessor.Preprocess(context, assetImporter, true);
-        // }
+        void OnPreprocessTexture()
+        {
+            processor.Run(ImportStep.OnPreprocessType, context, assetImporter);
+        }
 
 
         ////////////////////////////////// POSTPROCESS TYPED //////////////////////////////////
 
         void OnPostprocessModel(GameObject gameObject)
         {
-            processor.Run(ImportStep.OnPostprocessTypedAsset, context, assetImporter, gameObject);
+            processor.Run(ImportStep.OnPostprocessType, context, assetImporter, gameObject);
         }
 
-        // void OnPostprocessTexture(Texture2D texture)
-        // {
-        //     SequenceProcessor.Postprocess(context, assetImporter, texture);
-        // }
+        void OnPostprocessTexture(Texture2D texture)
+        {
+            processor.Run(ImportStep.OnPostprocessType, context, assetImporter, texture);
+        }
 
         // void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         // {

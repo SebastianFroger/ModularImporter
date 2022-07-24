@@ -9,14 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a937708ccb394e4fa7f9a48ae66b988, type: 3}
-  m_Name: Models.ImportSequence
+  m_Script: {fileID: 11500000, guid: 6abb8afa2df2e5e4aa7a37168765ede8, type: 3}
+  m_Name: InspectorTestScript
   m_EditorClassIdentifier: 
-  validationModules: []
-  preprocessAssetModules: []
-  preprocessTypedModules: []
-  postprocessTypedModules: []
-  ExecuteParentSequence: 0
-  references:
-    version: 2
-    RefIds: []
+  executeOnValidate: 0
+  script: {fileID: 0}

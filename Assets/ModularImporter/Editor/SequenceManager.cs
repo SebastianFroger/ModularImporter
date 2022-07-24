@@ -7,15 +7,17 @@ namespace ModularImporter
 {
     public class SequenceManager
     {
-        Dictionary<string, string> _sequences;
+        static Dictionary<string, string> _sequences;
 
-        public ImportSequence GetNearestSequenceTo(string filePath)
+        public static ImportSequence GetSequenceFor(string filePath)
         {
             if (_sequences == null)
+            {
                 CollectAllSequences();
+            }
 
             ImportSequence result = null;
-            while (result == null && filePath != "Assets")
+            while (result == null && filePath != Application.dataPath)
             {
                 filePath = Directory.GetParent(filePath).FullName.AsRelativePath();
                 if (_sequences.ContainsKey(filePath))
@@ -27,7 +29,7 @@ namespace ModularImporter
             return result;
         }
 
-        void CollectAllSequences()
+        static void CollectAllSequences()
         {
             _sequences = new Dictionary<string, string>();
 
@@ -38,7 +40,7 @@ namespace ModularImporter
                 _sequences.Add(Path.GetDirectoryName(filePath).AsRelativePath(), filePath);
             }
 
-            Debug.Log($"{this.GetType().Name} - found {_sequences.Count} ImportSequences in project");
+            Debug.Log($"SequenceManager - found {_sequences.Count} ImportSequences in project");
         }
     }
 }

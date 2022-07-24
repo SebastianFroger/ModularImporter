@@ -11,9 +11,10 @@ namespace ModularImporter
         public float somefloatA1;
         public bool someboolA1;
 
-        public bool Run(AssetImportContext context, AssetImporter assetImporter, GameObject gameObject = null)
+        public bool Run(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
         {
-            Debug.Log("TestModuleB " + context.assetPath);
+            Debug.Log("--- TestModuleB " + context.assetPath);
+
             return true;
         }
     }
