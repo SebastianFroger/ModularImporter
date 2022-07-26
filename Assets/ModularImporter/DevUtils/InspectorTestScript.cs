@@ -3,6 +3,7 @@ using UnityEditor;
 using System;
 using UnityEditor.Presets;
 using System.Linq;
+using System.Collections.Generic;
 
 
 [Serializable]
@@ -11,7 +12,7 @@ public class InspectorTestScript : ScriptableObject
 {
     public bool executeOnValidate;
 
-    public UnityEngine.Object script;
+    public List<string> filePaths = new() { "C:/dir1/dir2/file.ext", "C:/dir1/dir2/dir3/file.ext", "C:/dir1/file.ext", "C:/dir1/file2.ext", "C:/dir1/dir2/file2.ext" };
 
     System.Diagnostics.Stopwatch watch;
 
@@ -19,7 +20,6 @@ public class InspectorTestScript : ScriptableObject
     {
         WatchStart();
 
-        Debug.Log("type " + script.GetType());
 
 
         WatchStop();

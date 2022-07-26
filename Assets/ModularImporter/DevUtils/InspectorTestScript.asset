@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6abb8afa2df2e5e4aa7a37168765ede8, type: 3}
   m_Name: InspectorTestScript
   m_EditorClassIdentifier: 
-  executeOnValidate: 0
-  script: {fileID: 0}
+  executeOnValidate: 1
+  script: {fileID: 11500000, guid: a0a27213b43ac6c479e0ef75d6cdc547, type: 3}

@@ -2,45 +2,59 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System.IO;
+using System.Linq;
 
 namespace ModularImporter
 {
     public class SequenceManager
     {
-        static Dictionary<string, string> _sequences;
+        static Dictionary<string, List<ImportSequence>> _sequences = new();
 
-        public static ImportSequence GetSequenceFor(string filePath)
+        public static List<ImportSequence> GetSequencesFor(string path)
         {
-            if (_sequences == null)
-            {
-                CollectAllSequences();
-            }
+            List<ImportSequence> result = new();
+            var dataPath = Application.dataPath.AsRelativePath();
 
-            ImportSequence result = null;
-            while (result == null && filePath != Application.dataPath)
+            while (path != dataPath)
             {
-                filePath = Directory.GetParent(filePath).FullName.AsRelativePath();
-                if (_sequences.ContainsKey(filePath))
+                path = Directory.GetParent(path).FullName.AsRelativePath();
+
+                // check if we already have loaded the sequences in the dir
+                if (_sequences.ContainsKey(path))
                 {
-                    result = (ImportSequence)AssetDatabase.LoadAssetAtPath(_sequences[filePath], typeof(ImportSequence));
+                    result.AddRange(_sequences[path]);
+                    continue;
+                }
+
+                // otherwise load them and add them to the dict
+                var filesInDir = Directory.GetFiles(path, "*.ImportSequence.asset");
+                if (filesInDir.Length > 0)
+                {
+                    _sequences.Add(path, new());
+                    foreach (var fPath in filesInDir)
+                        _sequences[path].Add((ImportSequence)AssetDatabase.LoadAssetAtPath(fPath.AsRelativePath(), typeof(ImportSequence)));
+
+                    result.AddRange(_sequences[path]);
                 }
             }
 
+            result.Reverse();
             return result;
         }
 
-        static void CollectAllSequences()
+        static List<ImportSequence> GetLoadedSequences(string dirPath)
         {
-            _sequences = new Dictionary<string, string>();
-
-            var guids = AssetDatabase.FindAssets("t: ImportSequence");
-            for (int i = 0; i < guids.Length; i++)
+            if (!_sequences.ContainsKey(dirPath))
             {
-                var filePath = AssetDatabase.GUIDToAssetPath(guids[i]);
-                _sequences.Add(Path.GetDirectoryName(filePath).AsRelativePath(), filePath);
+                List<ImportSequence> result = new();
+                foreach (var path in Directory.GetFiles(dirPath, "*.ImportSequence.asset"))
+                    result.Add((ImportSequence)AssetDatabase.LoadAssetAtPath(path.AsRelativePath(), typeof(ImportSequence)));
+
+                _sequences.Add(dirPath, result);
+                return result;
             }
 
-            Debug.Log($"SequenceManager - found {_sequences.Count} ImportSequences in project");
+            return _sequences[dirPath];
         }
     }
 }

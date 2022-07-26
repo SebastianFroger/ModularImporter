@@ -22,7 +22,7 @@ namespace ModularImporter
         // TODO: add description
         [Header("Settings")]
         [SerializeField] public bool stopOnFailedModule;
-        [SerializeField] public bool executeParentSequence;
+        // [SerializeField] public bool executeParentSequence;
 
         TypeHandler _typeHandler;
 

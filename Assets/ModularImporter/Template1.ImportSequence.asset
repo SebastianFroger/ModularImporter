@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a937708ccb394e4fa7f9a48ae66b988, type: 3}
-  m_Name: Template.ImportSequence
+  m_Name: Template1
   m_EditorClassIdentifier: 
   preprocessAssetModules:
   - script: {fileID: 0}

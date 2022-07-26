@@ -2,74 +2,73 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.Presets;
 using UnityEditor.AssetImporters;
+using System.Collections.Generic;
 
 namespace ModularImporter
 {
     public class SequenceProcessor
     {
         // SequenceManager _sequenceManager; // TODO: static to share already found sequences???
-        ImportSequence _sequence;
-        bool _failedValidation;
+        List<ImportSequence> _sequences;
 
         public SequenceProcessor(AssetImportContext context)
         {
-            _sequence = SequenceManager.GetSequenceFor(context.assetPath);
+            _sequences = SequenceManager.GetSequencesFor(context.assetPath);
 
             // TODO: add log about currently processed file and what sequences where found
         }
 
         public void Run(ImportStep importStep, AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
         {
-            if (_failedValidation) return;
+            Debug.Log($"SequenceProcessor - ImportStep: {importStep} -  AssetPath: {context.assetPath}");
 
-            foreach (var module in GetModuleArray(importStep))
+            foreach (var sequence in _sequences)
             {
-                if (module.script == null)
-                    continue;
+                Debug.Log($"SequenceProcessor - Sequence: {AssetDatabase.GetAssetPath(sequence)}");
 
-                if (module.script is Preset)
+                foreach (var module in GetModules(importStep, sequence))
                 {
-                    Preset preset = (Preset)module.script;
-                    if (preset.CanBeAppliedTo(assetImporter))
-                    {
-                        preset.ApplyTo(assetImporter);
-                        Debug.Log($"ModuleProcessor applied Preset {assetImporter}");
+                    Debug.Log($"SequenceProcessor - Module: {(module.script == null ? "null" : module.script.name)}");
+
+                    if (module.script == null)
                         continue;
-                    }
 
-                    // TODO: log and print error
-                    Debug.LogError($"ModuleProcessor Preset {preset.name} cannot be applied to {assetImporter}");
-                    return;
-                }
-
-                if (module.data is IImportModule)
-                {
-                    try
+                    if (module.script is Preset)
                     {
-                        if (module.data.Run(context, assetImporter, unityObject))
+                        Preset preset = (Preset)module.script;
+                        if (preset.CanBeAppliedTo(assetImporter))
+                        {
+                            preset.ApplyTo(assetImporter);
+                            Debug.Log($"SequenceProcessor - Applied Preset {assetImporter}");
                             continue;
-
-                        if (_sequence.stopOnFailedModule)
-                            _failedValidation = true;
-                        return;
-                    }
-                    catch (System.Exception e)
-                    {
-                        if (_sequence.stopOnFailedModule)
-                            _failedValidation = true;
+                        }
 
                         // TODO: log and print error
-                        Debug.Log($"Failed to run module {module.script.name}.\n{e}");
+                        Debug.LogError($"SequenceProcessor - Preset {preset.name} cannot be applied to {assetImporter}");
+                        return;
+                    }
+
+                    if (module.data is IImportModule)
+                    {
+                        try
+                        {
+                            module.data.Run(context, assetImporter, unityObject);
+                        }
+                        catch (System.Exception e)
+                        {
+                            // TODO: log and print error
+                            Debug.Log($"SequenceProcessor - Failed to run module {module.script.name}.\n{e}");
+                        }
                     }
                 }
             }
         }
 
-        Module[] GetModuleArray(ImportStep importStep) => importStep switch
+        Module[] GetModules(ImportStep importStep, ImportSequence sequence) => importStep switch
         {
-            ImportStep.OnPreprocessAsset => _sequence.preprocessAssetModules,
-            ImportStep.OnPreprocessType => _sequence.preprocessTypedModules,
-            ImportStep.OnPostprocessType => _sequence.postprocessTypedModules,
+            ImportStep.OnPreprocessAsset => sequence.preprocessAssetModules,
+            ImportStep.OnPreprocessType => sequence.preprocessTypedModules,
+            ImportStep.OnPostprocessType => sequence.postprocessTypedModules,
         };
     }
 }
