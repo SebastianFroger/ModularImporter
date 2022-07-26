@@ -36,8 +36,10 @@ MonoBehaviour:
   - script: {fileID: 11500000, guid: c55fe046c58050f40b4226a81e3c486a, type: 3}
     data:
       rid: 8968621183701352456
-  stopOnFailedModule: 1
-  executeParentSequence: 0
+  - script: {fileID: 2655988077585873504, guid: 3bdef28ab1d0bb047856d094bc33e910, type: 2}
+    data:
+      rid: -2
+  moveToNextOnFailedModule: 0
   references:
     version: 2
     RefIds:
@@ -51,6 +53,7 @@ MonoBehaviour:
       type: {class: TestModuleA, ns: ModularImporter, asm: Assembly-CSharp}
       data:
         someVariable: 
+        somePreset: {fileID: 2655988077585873504, guid: 3bdef28ab1d0bb047856d094bc33e910, type: 2}
     - rid: 8968621183701352455
       type: {class: TestModuleB, ns: ModularImporter, asm: Assembly-CSharp}
       data:

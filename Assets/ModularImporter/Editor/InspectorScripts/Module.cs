@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEditor;
 using System;
 
 namespace ModularImporter
@@ -6,7 +7,7 @@ namespace ModularImporter
     [Serializable]
     public class Module
     {
-        public UnityEngine.Object script;
+        public MonoScript script;
         [SerializeReference] public IImportModule data;
     }
 }

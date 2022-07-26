@@ -21,8 +21,7 @@ namespace ModularImporter
 
         // TODO: add description
         [Header("Settings")]
-        [SerializeField] public bool stopOnFailedModule;
-        // [SerializeField] public bool executeParentSequence;
+        [SerializeField] public bool moveToNextOnFailedModule;
 
         TypeHandler _typeHandler;
 
@@ -57,12 +56,6 @@ namespace ModularImporter
 
                 if (module.data == null || module.script.name != module.data.GetType().ToString().Split(".").Last())
                 {
-                    if (module.script is Preset)
-                    {
-                        module.data = null;
-                        continue;
-                    }
-
                     Type type = _typeHandler.GetType(module.script.name);
                     if (type.GetInterfaces().Contains(typeof(IImportModule)))
                     {

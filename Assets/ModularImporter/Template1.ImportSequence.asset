@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a937708ccb394e4fa7f9a48ae66b988, type: 3}
-  m_Name: Template1
+  m_Name: Template1.ImportSequence
   m_EditorClassIdentifier: 
   preprocessAssetModules:
   - script: {fileID: 0}
@@ -36,8 +36,7 @@ MonoBehaviour:
   - script: {fileID: 11500000, guid: c55fe046c58050f40b4226a81e3c486a, type: 3}
     data:
       rid: 8968621183701352456
-  stopOnFailedModule: 1
-  executeParentSequence: 0
+  moveToNextOnFailedModule: 0
   references:
     version: 2
     RefIds:
@@ -51,6 +50,7 @@ MonoBehaviour:
       type: {class: TestModuleA, ns: ModularImporter, asm: Assembly-CSharp}
       data:
         someVariable: 
+        somePreset: {fileID: 0}
     - rid: 8968621183701352455
       type: {class: TestModuleB, ns: ModularImporter, asm: Assembly-CSharp}
       data:

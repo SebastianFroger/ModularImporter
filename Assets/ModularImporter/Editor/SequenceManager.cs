@@ -32,7 +32,10 @@ namespace ModularImporter
                 {
                     _sequences.Add(path, new());
                     foreach (var fPath in filesInDir)
-                        _sequences[path].Add((ImportSequence)AssetDatabase.LoadAssetAtPath(fPath.AsRelativePath(), typeof(ImportSequence)));
+                    {
+                        var scriptableObject = (ImportSequence)AssetDatabase.LoadAssetAtPath(fPath.AsRelativePath(), typeof(ImportSequence));
+                        _sequences[path].Add(scriptableObject);
+                    }
 
                     result.AddRange(_sequences[path]);
                 }

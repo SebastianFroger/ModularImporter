@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEditor;
-using UnityEditor.Presets;
 using UnityEditor.AssetImporters;
 using System.Collections.Generic;
 
@@ -20,51 +19,51 @@ namespace ModularImporter
 
         public void Run(ImportStep importStep, AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
         {
-            Debug.Log($"SequenceProcessor - ImportStep: {importStep} -  AssetPath: {context.assetPath}");
-
-            foreach (var sequence in _sequences)
+            for (int i = 0; i < _sequences.Count; i++)
             {
-                Debug.Log($"SequenceProcessor - Sequence: {AssetDatabase.GetAssetPath(sequence)}");
+                Debug.Log($"START - AssetPath: {context.assetPath} - ImportStep: {importStep} - Sequence: {AssetDatabase.GetAssetPath(_sequences[i])}");
 
-                foreach (var module in GetModules(importStep, sequence))
+                foreach (var module in GetModules(importStep, _sequences[i]))
                 {
-                    Debug.Log($"SequenceProcessor - Module: {(module.script == null ? "null" : module.script.name)}");
-
                     if (module.script == null)
                         continue;
-
-                    if (module.script is Preset)
-                    {
-                        Preset preset = (Preset)module.script;
-                        if (preset.CanBeAppliedTo(assetImporter))
-                        {
-                            preset.ApplyTo(assetImporter);
-                            Debug.Log($"SequenceProcessor - Applied Preset {assetImporter}");
-                            continue;
-                        }
-
-                        // TODO: log and print error
-                        Debug.LogError($"SequenceProcessor - Preset {preset.name} cannot be applied to {assetImporter}");
-                        return;
-                    }
 
                     if (module.data is IImportModule)
                     {
                         try
                         {
-                            module.data.Run(context, assetImporter, unityObject);
+                            if (!module.data.Run(context, assetImporter, unityObject))
+                            {
+
+                                if (_sequences[i].moveToNextOnFailedModule)
+                                {
+                                    i++;
+                                    break;
+                                }
+
+                                // TODO: add full stop of file import. or move to next sequence or ignore all errors?
+                                return;
+                            }
                         }
                         catch (System.Exception e)
                         {
                             // TODO: log and print error
                             Debug.Log($"SequenceProcessor - Failed to run module {module.script.name}.\n{e}");
+
+                            if (_sequences[i].moveToNextOnFailedModule)
+                            {
+                                i++;
+                                break;
+                            }
+
+                            return;
                         }
                     }
                 }
             }
         }
 
-        Module[] GetModules(ImportStep importStep, ImportSequence sequence) => importStep switch
+        static Module[] GetModules(ImportStep importStep, ImportSequence sequence) => importStep switch
         {
             ImportStep.OnPreprocessAsset => sequence.preprocessAssetModules,
             ImportStep.OnPreprocessType => sequence.preprocessTypedModules,
