@@ -7,7 +7,8 @@ namespace ModularImporter
     [Serializable]
     public class Module
     {
+        public bool disable = false;
         public MonoScript script;
-        [SerializeReference] public IImportModule data;
+        [SerializeReference] public IModule data;
     }
 }

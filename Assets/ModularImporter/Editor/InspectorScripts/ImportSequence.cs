@@ -9,6 +9,10 @@ namespace ModularImporter
     [CreateAssetMenu(fileName = "Template.ImportSequence.asset", menuName = "Modular Importer/New Import Sequence", order = 1)]
     public class ImportSequence : ScriptableObject
     {
+        // TODO: add description
+        [Header("Settings")]
+        [SerializeField] public bool disable;
+
         [Header("Import Modules")]
         [SerializeField] public Module[] preprocessAssetModules;
         int preprocessAssetModulesCount = -1;
@@ -19,22 +23,25 @@ namespace ModularImporter
         [SerializeField] public Module[] postprocessTypedModules;
         int postprocessTypedModulesCount = -1;
 
-        // TODO: add description
-        [Header("Settings")]
-        [SerializeField] public bool moveToNextOnFailedModule;
+        [SerializeField] public Module[] postprocessAllAssetsModules;
+        int postprocessAllAssetsModulesCount = -1;
 
-        TypeHandler _typeHandler;
+        static TypeHandler _typeHandler;
 
         void OnValidate()
         {
-            _typeHandler = new TypeHandler();
+            if (_typeHandler == null)
+                _typeHandler = new TypeHandler();
+
             UpdateModules(preprocessAssetModules, ref preprocessAssetModulesCount);
             UpdateModules(preprocessTypedModules, ref preprocessTypedModulesCount);
             UpdateModules(postprocessTypedModules, ref postprocessTypedModulesCount);
+            UpdateModules(postprocessAllAssetsModules, ref postprocessAllAssetsModulesCount);
         }
 
         void UpdateModules(Module[] modules, ref int count)
         {
+            // add empty module when expanding the inspector list
             if (count != modules.Length)
             {
                 if (count != -1 && modules.Length > count)
@@ -63,7 +70,13 @@ namespace ModularImporter
                         continue;
                     }
 
-                    Debug.LogError($"{module.script.name} must implement IImportModule or be a Unity Preset");
+                    if (type.GetInterfaces().Contains(typeof(IValidationModule)))
+                    {
+                        module.data = Activator.CreateInstance(type) as IValidationModule;
+                        continue;
+                    }
+
+                    Debug.LogError($"ImportSequence - {module.script.name} must implement IImportModule or IValidationModul");
                     module.script = null;
                 }
             }

@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace ModularImporter
 {
-    public class IsValidFileExtension : IImportModule
+    public class IsValidFileExtension : IValidationModule
     {
         public string validExtensions;
 
-        public bool Run(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
+        public bool Validate(AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
         {
             var extension = Path.GetExtension(context.assetPath);
             var isValid = validExtensions.Split(",").Contains(extension);

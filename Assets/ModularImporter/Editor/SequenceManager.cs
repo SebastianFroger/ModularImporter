@@ -44,20 +44,5 @@ namespace ModularImporter
             result.Reverse();
             return result;
         }
-
-        static List<ImportSequence> GetLoadedSequences(string dirPath)
-        {
-            if (!_sequences.ContainsKey(dirPath))
-            {
-                List<ImportSequence> result = new();
-                foreach (var path in Directory.GetFiles(dirPath, "*.ImportSequence.asset"))
-                    result.Add((ImportSequence)AssetDatabase.LoadAssetAtPath(path.AsRelativePath(), typeof(ImportSequence)));
-
-                _sequences.Add(dirPath, result);
-                return result;
-            }
-
-            return _sequences[dirPath];
-        }
     }
 }

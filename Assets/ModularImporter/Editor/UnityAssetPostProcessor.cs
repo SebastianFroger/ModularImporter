@@ -12,8 +12,8 @@ namespace ModularImporter
         //NOTE: passes assetImporter of asset type (FBXImporter, TextureImporter...)
         void OnPreprocessAsset()
         {
-            processor = new SequenceProcessor(context);
-            processor.Run(ImportStep.OnPreprocessAsset, context, assetImporter);
+            // processor = new SequenceProcessor(context);
+            SequenceProcessor.Run(ImportStep.OnPreprocessAsset, context, assetImporter);
         }
 
 
@@ -21,12 +21,12 @@ namespace ModularImporter
 
         void OnPreprocessModel()
         {
-            processor.Run(ImportStep.OnPreprocessType, context, assetImporter);
+            SequenceProcessor.Run(ImportStep.OnPreprocessType, context, assetImporter);
         }
 
         void OnPreprocessTexture()
         {
-            processor.Run(ImportStep.OnPreprocessType, context, assetImporter);
+            SequenceProcessor.Run(ImportStep.OnPreprocessType, context, assetImporter);
         }
 
 
@@ -34,18 +34,17 @@ namespace ModularImporter
 
         void OnPostprocessModel(GameObject gameObject)
         {
-            processor.Run(ImportStep.OnPostprocessType, context, assetImporter, gameObject);
+            SequenceProcessor.Run(ImportStep.OnPostprocessType, context, assetImporter, gameObject);
         }
 
         void OnPostprocessTexture(Texture2D texture)
         {
-            processor.Run(ImportStep.OnPostprocessType, context, assetImporter, texture);
+            SequenceProcessor.Run(ImportStep.OnPostprocessType, context, assetImporter, texture);
         }
 
         // void OnPostprocessAllAssets(string[] importedAssets, string[] deletedAssets, string[] movedAssets, string[] movedFromAssetPaths)
         // {
-        //     // TODO: how to handle this. this runs only once after all files are done importing
-        //     // NOTE: may be a good place to clear cached data. 
+        //     SequenceProcessor.Run(ImportStep.OnPostprocessType, context, assetImporter, texture);
         // }
     }
 }

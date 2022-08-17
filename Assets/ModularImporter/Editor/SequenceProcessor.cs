@@ -7,56 +7,49 @@ namespace ModularImporter
 {
     public class SequenceProcessor
     {
-        // SequenceManager _sequenceManager; // TODO: static to share already found sequences???
-        List<ImportSequence> _sequences;
+        static List<ImportSequence> _sequences;
 
-        public SequenceProcessor(AssetImportContext context)
+        public static void Run(ImportStep importStep, AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
         {
             _sequences = SequenceManager.GetSequencesFor(context.assetPath);
 
-            // TODO: add log about currently processed file and what sequences where found
-        }
-
-        public void Run(ImportStep importStep, AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
-        {
             for (int i = 0; i < _sequences.Count; i++)
             {
-                Debug.Log($"START - AssetPath: {context.assetPath} - ImportStep: {importStep} - Sequence: {AssetDatabase.GetAssetPath(_sequences[i])}");
+                if (_sequences[i].disable)
+                    continue;
+
+                Debug.Log($"SequenceProcessor - AssetPath: {context.assetPath} - ImportStep: {importStep} - Sequence: {AssetDatabase.GetAssetPath(_sequences[i])}");
 
                 foreach (var module in GetModules(importStep, _sequences[i]))
                 {
-                    if (module.script == null)
+                    if (module.script == null || module.disable)
                         continue;
+
+                    if (module.data is IValidationModule)
+                    {
+                        try
+                        {
+                            if (!(module.data as IValidationModule).Validate(context, assetImporter, unityObject))
+                            {
+                                i++;
+                                break;
+                            }
+                        }
+                        catch (System.Exception e)
+                        {
+                            Debug.LogError($"SequenceProcessor - Failed to run module {module.script.name}.\n{e}");
+                        }
+                    }
 
                     if (module.data is IImportModule)
                     {
                         try
                         {
-                            if (!module.data.Run(context, assetImporter, unityObject))
-                            {
-
-                                if (_sequences[i].moveToNextOnFailedModule)
-                                {
-                                    i++;
-                                    break;
-                                }
-
-                                // TODO: add full stop of file import. or move to next sequence or ignore all errors?
-                                return;
-                            }
+                            (module.data as IImportModule).Run(context, assetImporter, unityObject);
                         }
                         catch (System.Exception e)
                         {
-                            // TODO: log and print error
-                            Debug.Log($"SequenceProcessor - Failed to run module {module.script.name}.\n{e}");
-
-                            if (_sequences[i].moveToNextOnFailedModule)
-                            {
-                                i++;
-                                break;
-                            }
-
-                            return;
+                            Debug.LogError($"SequenceProcessor - Failed to run module {module.script.name}.\n{e}");
                         }
                     }
                 }
