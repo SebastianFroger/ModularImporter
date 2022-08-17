@@ -23,9 +23,6 @@ namespace ModularImporter
         [SerializeField] public Module[] postprocessTypedModules;
         int postprocessTypedModulesCount = -1;
 
-        [SerializeField] public Module[] postprocessAllAssetsModules;
-        int postprocessAllAssetsModulesCount = -1;
-
         static TypeHandler _typeHandler;
 
         void OnValidate()
@@ -36,7 +33,6 @@ namespace ModularImporter
             UpdateModules(preprocessAssetModules, ref preprocessAssetModulesCount);
             UpdateModules(preprocessTypedModules, ref preprocessTypedModulesCount);
             UpdateModules(postprocessTypedModules, ref postprocessTypedModulesCount);
-            UpdateModules(postprocessAllAssetsModules, ref postprocessAllAssetsModulesCount);
         }
 
         void UpdateModules(Module[] modules, ref int count)
