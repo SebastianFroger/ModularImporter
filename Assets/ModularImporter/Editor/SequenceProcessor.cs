@@ -11,6 +11,8 @@ namespace ModularImporter
 
         public static void Run(ImportStep importStep, AssetImportContext context, AssetImporter assetImporter, UnityEngine.Object unityObject = null)
         {
+            if (!EditorMenu.isEnabled) return;
+
             _sequences = SequenceManager.GetSequencesFor(context.assetPath);
 
             for (int i = 0; i < _sequences.Count; i++)
