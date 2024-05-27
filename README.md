@@ -8,6 +8,7 @@ The ImportSequence has a filtering step, that can reference modules used to sort
 
 
 '''
+
 using System;
 using UnityEngine;
 using UnityEditor.AssetImporters;
